@@ -27,24 +27,18 @@ bool Book::getIssuedStatus() const
 
 bool Book::issueBook()
 {
-    if(isIssued == true)
-    {
+    if(isIssued)
         return false;
-    }
-
+    
     isIssued = true;
-
     return true;
 }
 
 bool Book::returnBook()
 {
-    if(isIssued == false)
-    {
+    if(!isIssued)
         return false;
-    }
 
     isIssued = false;
-
     return true;
 } 

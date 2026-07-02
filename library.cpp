@@ -24,12 +24,9 @@ bool Library::removeBook(int id)
 
     //Now check if book is issued or not
     const Book& currentBook = it -> second;
-    bool isCurrBookIssued = currentBook.getIssuedStatus();
-
-    if(isCurrBookIssued)
-    {
+    
+    if(currentBook.getIssuedStatus())
         return false;
-    }
 
     booksMap.erase(it);
     return true;
