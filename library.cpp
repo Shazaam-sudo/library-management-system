@@ -1,5 +1,7 @@
 #include "library.hpp"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 bool Library::addBook(const Book& book) 
 {
@@ -106,4 +108,68 @@ bool Library::returnBook(int id)
     }
 
     return currentBook -> returnBook();
+}
+
+bool Library::loadBooksFromFile(const std::string& filename)
+{
+    //open file in read mode
+    std::ifstream file(filename);
+
+    //File doesn't exist means it is first time case
+    if(!file)
+    {
+        return true;
+    }
+
+    std::string line;
+
+    while(std::getline(file, line))
+    {
+        std::stringstream ss(line);
+
+        std::string idStr;
+        std::string title;
+        std::string author;
+        std::string status;
+
+        std::getline(ss, idStr, '|');
+        std::getline(ss, title, '|');
+        std::getline(ss, author, '|');
+        std::getline(ss, status, '|');
+
+        int id = stoi(idStr);
+        bool isIssued = (status == "1");
+
+        Book book(id, title, author, isIssued);
+        booksMap.emplace(id, book);
+    }
+
+    return true;
+}
+
+bool Library::saveBooksToFile(const std::string& filename) const
+{
+    //open file in write mode
+    std::ofstream file(filename);
+
+    if(!file)
+    {
+        return false;
+    }
+
+    for(const auto& it : booksMap)
+    {
+        const Book& currentBook = it.second;
+
+        file << currentBook.getId()
+             << '|'
+             << currentBook.getTitle()
+             << '|'
+             << currentBook.getAuthor()
+             <<'|'
+             << currentBook.getIssuedStatus()
+             << '\n';
+    }
+
+    return true;
 }

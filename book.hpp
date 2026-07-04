@@ -12,7 +12,7 @@ private:
     bool isIssued;
 
 public:
-    Book(int _id, const std::string& _title, const std::string& _author);
+    Book(int _id, const std::string& _title, const std::string& _author, bool _isIssued = false);
     int getId() const;
     const std::string& getTitle() const;
     const std::string& getAuthor() const;

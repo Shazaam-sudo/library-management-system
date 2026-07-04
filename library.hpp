@@ -17,6 +17,8 @@ public:
     bool displayBooks() const;
     bool issueBook(int id);
     bool returnBook(int id);
+    bool loadBooksFromFile(const std::string& filename);
+    bool saveBooksToFile(const std::string& filename) const;
 };
 
 #endif

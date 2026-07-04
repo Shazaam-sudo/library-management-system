@@ -1,6 +1,6 @@
 #include "book.hpp"
 
-Book::Book(int _id, const std::string& _title, const std::string& _author) : id(_id), title(_title), author(_author), isIssued(false)
+Book::Book(int _id, const std::string& _title, const std::string& _author, bool _isIssued) : id(_id), title(_title), author(_author), isIssued(_isIssued)
 {
 
 }

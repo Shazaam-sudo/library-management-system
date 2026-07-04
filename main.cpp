@@ -6,6 +6,7 @@
 int main()
 {
     Library library;
+    library.loadBooksFromFile("books.txt");
     int choice = 0;
 
     do
@@ -154,6 +155,7 @@ int main()
 
             case 7:
             {
+                library.saveBooksToFile("books.txt");
                 std::cout << "Exiting..." << std::endl;
                 break;
             }       
