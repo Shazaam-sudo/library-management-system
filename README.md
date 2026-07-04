@@ -6,7 +6,7 @@ A modular Library Management System built in Modern C++ demonstrating Object-Ori
 
 ## 📖 Overview
 
-This project is a console-based Library Management System built using Modern C++. It allows users to manage books efficiently by performing operations such as adding, removing, searching, issuing, and returning books. The project demonstrates Object-Oriented Programming (OOP) principles, modular design, and the use of STL containers while following clean software engineering practices.
+This project is a console-based Library Management System built using Modern C++. It allows users to manage books efficiently by performing operations such as adding, removing, searching, issuing, and returning books. The application also persists library data using text file storage, ensuring that books remain available even after restarting the program. The project demonstrates Object-Oriented Programming (OOP), modular design, file handling, and the use of STL containers while following clean software engineering practices.
 
 ---
 
@@ -20,6 +20,7 @@ This project is a console-based Library Management System built using Modern C++
 - Remove books from the library.
 - Prevent duplicate book entries.
 - Prevent issued books from being removed.
+- Persist library data using text file storage (`books.txt`).
 
 ---
 
@@ -28,6 +29,7 @@ This project is a console-based Library Management System built using Modern C++
 - **Language:** Modern C++ (C++17)
 - **Standard Template Library (STL):** `unordered_map`, `string`
 - **Programming Paradigm:** Object-Oriented Programming (OOP)
+- **File Handling:** `ifstream`, `ofstream`, `stringstream`
 - **Build Tool:** g++
 - **Version Control:** Git
 - **Repository Hosting:** GitHub
@@ -49,6 +51,9 @@ This project is a console-based Library Management System built using Modern C++
 - Iterators
 - Pointers and References
 - Modular Project Structure
+- File Handling
+- String Parsing using std::stringstream
+- RAII (Automatic Resource Management)
 
 ---
 
@@ -62,6 +67,7 @@ library-management-system/
 ├── library.hpp     # Declaration of the Library class
 ├── library.cpp     # Implementation of the Library class
 ├── main.cpp        # Entry point of the application
+├── books.txt       # Persistent storage for library data
 ├── .gitignore      # Files ignored by Git
 └── README.md       # Project documentation
 ```
@@ -82,7 +88,7 @@ Contains the declaration of the `Library` class, which manages the collection of
 
 #### 📄 library.cpp
 
-Implements the core library operations including:
+Implements the core library operations and file persistence including:
 
 - Add Book
 - Remove Book
@@ -90,6 +96,8 @@ Implements the core library operations including:
 - Display Books
 - Issue Book
 - Return Book
+- Load Books from File
+- Save Books to File
 
 #### 📄 main.cpp
 
@@ -134,12 +142,12 @@ Run the application using:
 - [x] Added Git version control.
 - [x] Published the project on GitHub.
 - [x] Added professional project documentation.
+- [x] Persist library data using file handling.
 
 ---
 
 ### 🔄 Planned Enhancements
 
-- [ ] Persist library data using file handling.
 - [ ] Introduce multithreading with proper synchronization (`std::mutex`) to safely handle concurrent book issue/return operations.
 - [ ] Replace console output with a configurable logging system.
 - [ ] Implement custom exception handling.
@@ -149,13 +157,17 @@ Run the application using:
 - [ ] Expose the application through REST APIs.
 - [ ] Containerize the project using Docker.
 
+## 💾 Data Persistence
+
+The application automatically loads library data from `books.txt` during startup and saves the latest library state before exiting. This ensures that books remain available across multiple executions without requiring a database.
+
 > 🚧 This project is being developed incrementally to learn and demonstrate Modern C++ and backend software engineering concepts. New features will be added over time.
 
 ---
 
 ## 👨‍💻 Author
 
-**Mohd Shezan Ansari**
+**Mohd Shezan**
 
 Backend Software Engineer
 
