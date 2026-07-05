@@ -1,6 +1,8 @@
 #include "library.hpp"
 #include "book.hpp"
+#include "utils.hpp"
 #include <limits>
+#include <climits>
 #include <iostream>
 
 int main()
@@ -20,26 +22,21 @@ int main()
         std::cout<<"5. Issue Book"<<std::endl;
         std::cout<<"6. Return Book"<<std::endl;
         std::cout<<"7. Exit"<<std::endl;
-        std::cin>>choice;
+        std::cout<<std::endl;
+
+        choice = getValidInteger("Enter choice: ", 1, 7);
+
         std::cout<<std::endl;
 
         switch(choice)
         {
             case 1:
             {
-                int id;
-                std::string title;
-                std::string author;
-
-                std::cout<<"Enter the id of the book: ";
-                std::cin>>id;
+                int id = getValidInteger("Enter the id of the book: ", 1, INT_MAX);
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-                std::cout<<"Enter the title of the book: ";
-                std::getline(std::cin, title);
-
-                std::cout<<"Enter the author of the book: ";
-                std::getline(std::cin, author);
+                std::string title = getValidString("Enter the title of the book: ");
+                std::string author = getValidString("Enter the author of the book: ");
 
                 Book book(id, title, author);
 
@@ -57,9 +54,7 @@ int main()
 
             case 2:
             {
-                int id;
-                std::cout<<"Enter the id of the book to be removed: ";
-                std::cin>>id;
+                int id = getValidInteger("Enter the id of the book: ", 1, INT_MAX);
 
                 if(library.removeBook(id))
                 {
@@ -75,9 +70,7 @@ int main()
 
             case 3:
             {
-                int id;
-                std::cout<<"Enter the id of the book to be searched: ";
-                std::cin>>id;
+                int id = getValidInteger("Enter the id of the book: ", 1, INT_MAX);
 
                 const Book* book = library.searchBook(id);
 
@@ -119,9 +112,7 @@ int main()
 
             case 5:
             {
-                int id;
-                std::cout<<"Enter the id of the book to be issued: ";
-                std::cin>>id;
+                int id = getValidInteger("Enter the id of the book: ", 1, INT_MAX);
 
                 if(library.issueBook(id))
                 {
@@ -137,9 +128,7 @@ int main()
 
             case 6:
             {
-                int id;
-                std::cout<<"Enter the id of the book to be returned: ";
-                std::cin>>id;
+                int id = getValidInteger("Enter the id of the book: ", 1, INT_MAX);
 
                 if(library.returnBook(id))
                 {
