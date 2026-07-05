@@ -21,6 +21,8 @@ This project is a console-based Library Management System built using Modern C++
 - Prevent duplicate book entries.
 - Prevent issued books from being removed.
 - Persist library data using text file storage (`books.txt`).
+- Validate integer inputs with range checking.
+- Validate string inputs and trim leading/trailing spaces.
 
 ---
 
@@ -54,6 +56,8 @@ This project is a console-based Library Management System built using Modern C++
 - File Handling
 - String Parsing using std::stringstream
 - RAII (Automatic Resource Management)
+- Input Validation
+- Utility Functions
 
 ---
 
@@ -66,6 +70,8 @@ library-management-system/
 ├── book.cpp        # Implementation of the Book class
 ├── library.hpp     # Declaration of the Library class
 ├── library.cpp     # Implementation of the Library class
+├── utils.hpp       # Declaration of the utility functions
+├── utils.cpp       # Implementation of the utility functions
 ├── main.cpp        # Entry point of the application
 ├── books.txt       # Persistent storage for library data
 ├── .gitignore      # Files ignored by Git
@@ -143,6 +149,8 @@ Run the application using:
 - [x] Published the project on GitHub.
 - [x] Added professional project documentation.
 - [x] Persist library data using file handling.
+- [x] Added reusable integer input validation utility.
+- [x] Added reusable string input validation utility.
 
 ---
 
