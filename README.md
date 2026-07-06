@@ -23,6 +23,7 @@ This project is a console-based Library Management System built using Modern C++
 - Persist library data using text file storage (`books.txt`).
 - Validate integer inputs with range checking.
 - Validate string inputs and trim leading/trailing spaces.
+- Recover gracefully from corrupted records while loading data from file.
 
 ---
 
@@ -58,6 +59,7 @@ This project is a console-based Library Management System built using Modern C++
 - RAII (Automatic Resource Management)
 - Input Validation
 - Utility Functions
+- Exception Handling
 
 ---
 
@@ -151,14 +153,15 @@ Run the application using:
 - [x] Persist library data using file handling.
 - [x] Added reusable integer input validation utility.
 - [x] Added reusable string input validation utility.
+- [x] Implemented exception handling for invalid file records.
 
 ---
 
 ### 🔄 Planned Enhancements
 
+- [ ] Add a Makefile for simplified build and execution.
 - [ ] Introduce multithreading with proper synchronization (`std::mutex`) to safely handle concurrent book issue/return operations.
 - [ ] Replace console output with a configurable logging system.
-- [ ] Implement custom exception handling.
 - [ ] Add unit tests for core library operations.
 - [ ] Integrate Redis for caching frequently accessed data.
 - [ ] Integrate Kafka for event-driven notifications.
@@ -167,7 +170,7 @@ Run the application using:
 
 ## 💾 Data Persistence
 
-The application automatically loads library data from `books.txt` during startup and saves the latest library state before exiting. This ensures that books remain available across multiple executions without requiring a database.
+The application automatically loads library data from `books.txt` during startup and saves the latest library state before exiting. This ensures that books remain available across multiple executions without requiring a database. If corrupted records are encountered during loading, they are skipped gracefully without terminating the application.
 
 > 🚧 This project is being developed incrementally to learn and demonstrate Modern C++ and backend software engineering concepts. New features will be added over time.
 

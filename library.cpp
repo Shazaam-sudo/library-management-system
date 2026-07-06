@@ -137,11 +137,24 @@ bool Library::loadBooksFromFile(const std::string& filename)
         std::getline(ss, author, '|');
         std::getline(ss, status, '|');
 
-        int id = stoi(idStr);
-        bool isIssued = (status == "1");
+        try
+        {
+            int id = stoi(idStr);
+            bool isIssued = (status == "1");
 
-        Book book(id, title, author, isIssued);
-        booksMap.emplace(id, book);
+            Book book(id, title, author, isIssued);
+            booksMap.emplace(id, book);
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << "Warning: Skipping invalid record.\n";
+            std::cout << "Reason: " << e.what() << '\n';
+            std::cout << "Record: "
+                      << idStr << '|'
+                      << title << '|'
+                      << author << '|'
+                      << status << '\n';
+        }
     }
 
     return true;
