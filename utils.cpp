@@ -1,8 +1,6 @@
 #include "utils.hpp"
 #include <iostream>
 #include <limits>
-#include <boost/algorithm/string.hpp>
-using namespace boost::algorithm;
 
 int getValidInteger(const std::string& message, int minValue, int maxValue)
 {
