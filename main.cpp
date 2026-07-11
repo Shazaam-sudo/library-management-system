@@ -4,6 +4,7 @@
 #include <limits>
 #include <climits>
 #include <iostream>
+#include "logger.hpp"
 
 int main()
 {
@@ -42,11 +43,13 @@ int main()
 
                 if(library.addBook(book))
                 {
-                    std::cout<<"Book added successfully"<<std::endl;
+                    Logger::info("Book added successfully");
+                    //std::cout<<"Book added successfully"<<std::endl;
                 }
                 else
                 {
-                    std::cout<<"Unable to add book"<<std::endl;
+                    Logger::warning("Unable to add book");
+                    //std::cout<<"Unable to add book"<<std::endl;
                 }
 
                 break;
@@ -58,11 +61,13 @@ int main()
 
                 if(library.removeBook(id))
                 {
-                    std::cout<<"Book removed successfully"<<std::endl;
+                    Logger::info("Book removed successfully");
+                    //std::cout<<"Book removed successfully"<<std::endl;
                 }
                 else
                 {
-                    std::cout<<"Failed to remove book"<<std::endl;
+                    Logger::warning("Unable to remove book");
+                    //std::cout<<"Failed to remove book"<<std::endl;
                 }
 
                 break;
@@ -76,7 +81,8 @@ int main()
 
                 if(book == nullptr)
                 {
-                    std::cout<<"Book is not present"<<std::endl;
+                    Logger::warning("Book is not present");
+                    //std::cout<<"Book is not present"<<std::endl;
                 }
                 else
                 {
@@ -104,7 +110,8 @@ int main()
             {
                 if(!library.displayBooks())
                 {
-                    std::cout<<"No books present"<<std::endl;
+                    Logger::info("No books present");
+                    //std::cout<<"No books present"<<std::endl;
                 }
 
                 break;
@@ -116,11 +123,13 @@ int main()
 
                 if(library.issueBook(id))
                 {
-                    std::cout<<"Book issued successfully"<<std::endl;
+                    Logger::info("Book issued successfully");
+                    //std::cout<<"Book issued successfully"<<std::endl;
                 }
                 else 
                 {
-                    std::cout<<"Unable to issue book"<<std::endl;
+                    Logger::warning("Unable to issue book");
+                    //std::cout<<"Unable to issue book"<<std::endl;
                 }
 
                 break;
@@ -132,11 +141,13 @@ int main()
 
                 if(library.returnBook(id))
                 {
-                    std::cout<<"Book returned successfully"<<std::endl;
+                    Logger::info("Book returned successfully");
+                    //std::cout<<"Book returned successfully"<<std::endl;
                 }
                 else 
                 {
-                    std::cout<<"Unable to return book"<<std::endl;
+                    Logger::warning("Unable to return book");
+                    //std::cout<<"Unable to return book"<<std::endl;
                 }
 
                 break;

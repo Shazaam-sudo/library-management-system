@@ -1,4 +1,5 @@
 #include "library.hpp"
+#include "logger.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -118,6 +119,7 @@ bool Library::loadBooksFromFile(const std::string& filename)
     //File doesn't exist means it is first time case
     if(!file)
     {
+        Logger::error("Unable to open book.txt");
         return true;
     }
 
@@ -147,7 +149,7 @@ bool Library::loadBooksFromFile(const std::string& filename)
         }
         catch(const std::exception& e)
         {
-            std::cout << "Warning: Skipping invalid record.\n";
+            Logger::warning("Skipping invalid record");
             std::cout << "Reason: " << e.what() << '\n';
             std::cout << "Record: "
                       << idStr << '|'
@@ -167,6 +169,7 @@ bool Library::saveBooksToFile(const std::string& filename) const
 
     if(!file)
     {
+        Logger::error("Unable to open book.txt");
         return false;
     }
 
