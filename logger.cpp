@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
 
 namespace
 {
@@ -27,44 +28,74 @@ namespace
 
         return oss.str();
     }
+
+    const char* getLogString(Logger::LogLevel level)
+    {
+        if(level == Logger::LogLevel::Info)
+            return "INFO";
+
+        else if(level == Logger::LogLevel::Warning)
+            return "WARNING";    
+        
+        return "ERROR";
+    }
+
+    const char* getColor(Logger::LogLevel level)
+    {
+        if(level == Logger::LogLevel::Info)
+            return GREEN;
+        
+        else if(level == Logger::LogLevel::Warning)
+            return YELLOW;
+
+        return RED;
+    }
 }
 
-void Logger::log(const std::string& level, const std::string& message)
+void Logger::log(Logger::LogLevel level, const std::string& message)
 {
     const std::string currentDateTime = getCurrentTime();
-    const char* color = RESET;
-    if(level == "INFO")
-    {
-        color = GREEN;
+    const char* loglevel = getLogString(level);
+    const char* color = getColor(level);
 
-    }
-    else if(level == "WARNING")
+    std::ofstream file("logs.txt", std::ios::app);
+
+    if(!file)
     {
-        color = YELLOW;
+        std::cout<<currentDateTime<<" "
+             <<RED
+             << "[ERROR] "
+             <<RESET
+             <<"Filed to open logs file"
+             <<std::endl;
     }
     else
     {
-        color = RED;
+        file<<currentDateTime<<" "
+            << "[" << loglevel << "] "
+            <<message
+            <<'\n';
     }
 
     std::cout<<currentDateTime<<" "
              <<color
-             << "[" << level << "] "
+             << "[" << loglevel << "] "
              <<RESET
-             <<message<<std::endl;
+             <<message
+             <<std::endl;
 }
 
 void Logger::info(const std::string& message)
 {
-    log("INFO", message);
+    log(Logger::LogLevel::Info, message);
 }
 
 void Logger::warning(const std::string& message)
 {
-    log("WARNING", message);
+    log(Logger::LogLevel::Warning, message);
 }
 
 void Logger::error(const std::string& message)
 {
-    log("ERROR", message);
+    log(Logger::LogLevel::Error, message);
 }

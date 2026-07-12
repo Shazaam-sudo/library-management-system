@@ -5,8 +5,17 @@
 
 class Logger
 {
+public:
+    enum class LogLevel
+    {
+        Info,
+        Warning,
+        Error
+    };
+
 private:
-    static void log(const std::string& level, const std::string& message);
+    static void log(LogLevel level, const std::string& message);
+
 public:
     static void info(const std::string& message);
     static void warning(const std::string& message);
