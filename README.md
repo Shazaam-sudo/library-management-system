@@ -6,7 +6,7 @@ A modular Library Management System built in Modern C++ demonstrating Object-Ori
 
 ## 📖 Overview
 
-This project is a console-based Library Management System built using Modern C++. It allows users to manage books efficiently by performing operations such as adding, removing, searching, issuing, and returning books. The application also persists library data using text file storage, ensuring that books remain available even after restarting the program. The project demonstrates Object-Oriented Programming (OOP), modular design, file handling, and the use of STL containers while following clean software engineering practices.
+This project is a console-based Library Management System built using Modern C++. It allows users to manage books efficiently by performing operations such as adding, removing, searching, issuing, and returning books. The application also persists library data using text file storage, ensuring that books remain available even after restarting the program. The project demonstrates Object-Oriented Programming (OOP), modular design, file handling, and the use of STL containers while following clean software engineering practices. The project is built incrementally, with each feature focusing on learning real-world backend software engineering practices.
 
 ---
 
@@ -24,6 +24,7 @@ This project is a console-based Library Management System built using Modern C++
 - Validate integer inputs with range checking.
 - Validate string inputs and trim leading/trailing spaces.
 - Recover gracefully from corrupted records while loading data from file.
+- Console and file-based logging with timestamps and color-coded log levels.
 
 ---
 
@@ -33,7 +34,8 @@ This project is a console-based Library Management System built using Modern C++
 - **Standard Template Library (STL):** `unordered_map`, `string`
 - **Programming Paradigm:** Object-Oriented Programming (OOP)
 - **File Handling:** `ifstream`, `ofstream`, `stringstream`
-- **Build Tool:** g++
+- **Compiler:** g++
+- **Build System:** Makefile
 - **Version Control:** Git
 - **Repository Hosting:** GitHub
 - **Development Environment:** Visual Studio Code + WSL (Ubuntu)
@@ -60,6 +62,12 @@ This project is a console-based Library Management System built using Modern C++
 - Input Validation
 - Utility Functions
 - Exception Handling
+- Logging System
+- enum class (Strongly Typed Enumerations)
+- Anonymous Namespace
+- constexpr
+- Static Member Functions
+- Makefile
 
 ---
 
@@ -74,8 +82,11 @@ library-management-system/
 ├── library.cpp     # Implementation of the Library class
 ├── utils.hpp       # Declaration of the utility functions
 ├── utils.cpp       # Implementation of the utility functions
+├── logger.hpp      # Declaration of the Logger class
+├── logger.cpp      # Implementation of the Logger class
 ├── main.cpp        # Entry point of the application
 ├── books.txt       # Persistent storage for library data
+├── logs.txt        # Stores logs
 ├── .gitignore      # Files ignored by Git
 └── README.md       # Project documentation
 ```
@@ -107,6 +118,14 @@ Implements the core library operations and file persistence including:
 - Load Books from File
 - Save Books to File
 
+#### 📄 logger.hpp
+
+Contains the declaration of the `Logger` class, which manages the enum class log level and various log functions.
+
+#### 📄 logger.cpp
+
+Implements the logger, including timestamp generation, log formatting, color selection, console/file logging, and helper functions hidden inside an anonymous namespace.
+
 #### 📄 main.cpp
 
 Acts as the entry point of the application. It provides a menu-driven interface and interacts with the `Library` class to perform various operations.
@@ -118,7 +137,8 @@ Acts as the entry point of the application. It provides a menu-driven interface 
 Compile the project using:
 
 ```bash
-g++ -std=c++17 -g -Wall -Wextra -Wpedantic main.cpp book.cpp library.cpp -o app
+make clean
+make
 ```
 
 ---
@@ -150,18 +170,18 @@ Run the application using:
 - [x] Added Git version control.
 - [x] Published the project on GitHub.
 - [x] Added professional project documentation.
-- [x] Persist library data using file handling.
+- [x] Persisted library data using file handling.
 - [x] Added reusable integer input validation utility.
 - [x] Added reusable string input validation utility.
 - [x] Implemented exception handling for invalid file records.
+- [x] Added a Makefile for simplified build and execution.
+- [x] Implemented reusable console and file-based logging system.
 
 ---
 
 ### 🔄 Planned Enhancements
 
-- [ ] Add a Makefile for simplified build and execution.
 - [ ] Introduce multithreading with proper synchronization (`std::mutex`) to safely handle concurrent book issue/return operations.
-- [ ] Replace console output with a configurable logging system.
 - [ ] Add unit tests for core library operations.
 - [ ] Integrate Redis for caching frequently accessed data.
 - [ ] Integrate Kafka for event-driven notifications.
